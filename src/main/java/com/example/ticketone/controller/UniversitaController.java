@@ -1,13 +1,12 @@
 package com.example.ticketone.controller;
 
+import com.example.ticketone.dto.EsameDto;
+import com.example.ticketone.model.Esame;
 import com.example.ticketone.model.Studente;
 import com.example.ticketone.service.UniversitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +30,10 @@ public class UniversitaController {
         List<Studente> out = service.getAllStudenti(); */
         return ResponseEntity.ok(service.getStudenteById(aaaa));
     }
+    @PostMapping(value = "faiEsame/{idStudente}")
+    public ResponseEntity<?> faiEsame(@RequestBody EsameDto esame, @PathVariable(name = "idStudente") Integer idStudente){
+        return ResponseEntity.ok(service.faiEsame(esame, idStudente));
+    }
+
+
 }
